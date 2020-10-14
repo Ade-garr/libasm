@@ -12,12 +12,15 @@
 
 #include <stdio.h>
 #include <string.h>
+#include "libasm.h"
+
+int64_t maxofthree(int64_t, int64_t, int64_t);
 
 int main()
 {
     char str[] = "Test";
 
-    printf("strlen = %d\n", strlen(str));
-    printf("ft_strlen = %d\n", ft_strlen(str));
+    printf("strlen = %lu\n", strlen(str));
+    printf("ft_strlen = %zu\n", ft_strlen(NULL));
     return(0);
 }

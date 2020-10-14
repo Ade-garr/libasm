@@ -25,13 +25,13 @@ ${NAME}:	${OBJS}
 			printf "\033[32m$@ is ready ! \n\033[0m"
 
 ${OBJS}: %.o: %.s
-			${ASMC} -f elf64 -s $< -o $@
+			${ASMC} -f macho64 -s $< -o $@
 			
 clean:
-			rm ${OBJS}
+			${RM} ${OBJS}
 
 fclean:		clean
-			rm ${NAME}
+			${RM} ${NAME}
 
 re:			fclean all
 
