@@ -11,6 +11,8 @@
 # **************************************************************************** #
 
 SRCS += ft_strlen.s
+SRCS += ft_strcpy.s
+SRCS += ft_strcmp.s
 
 OBJS	= ${SRCS:.s=.o}
 
@@ -25,7 +27,7 @@ ${NAME}:	${OBJS}
 			printf "\033[32m$@ is ready ! \n\033[0m"
 
 ${OBJS}: %.o: %.s
-			${ASMC} -f macho64 -s $< -o $@
+			${ASMC} -f elf64 -s $< -o $@
 			
 clean:
 			${RM} ${OBJS}

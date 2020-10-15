@@ -14,13 +14,23 @@
 #include <string.h>
 #include "libasm.h"
 
-int64_t maxofthree(int64_t, int64_t, int64_t);
-
 int main()
 {
     char str[] = "Test";
+    char dest[] = "sucedesbites";
+    char src[] = "C'est correct";
 
+    //ft_strlen:
     printf("strlen = %lu\n", strlen(str));
-    printf("ft_strlen = %zu\n", ft_strlen(NULL));
+    printf("ft_strlen = %zu\n", ft_strlen(str));
+
+    //ft_strcpy:
+    printf("strcpy = %s\n", strcpy(dest, src));
+    printf("ft_strcpy = %s\n", ft_strcpy(dest, src));
+
+    //ft_strcmp:
+    printf("strcmp = %d\n", strcmp(dest, src));
+    printf("ft_strcmp = %d\n", ft_strcmp(dest, src));
+
     return(0);
 }
