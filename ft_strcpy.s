@@ -5,11 +5,11 @@ ft_strcpy:
     mov     rax, rdi
 
 _loop:
-    cmp    byte[rsi], 0
+    cmp     byte[rsi], 0
     jz      _finish
     mov     rcx, [rsi]
     mov     [rdi], rcx
-    inc     rdi
+    inc     rcx
     inc     rsi
     jmp      _loop
 

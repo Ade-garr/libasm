@@ -17,16 +17,18 @@
 int main()
 {
     char str[] = "Test";
-    char dest[] = "sucedesbites";
-    char src[] = "C'est correct";
+    char dest[] = "C'est correct";
+    char src[] = "suce des bites";
+    // char dest2[] = "sucedesbites";
+    // char src2[] = "C'est correct";
 
     //ft_strlen:
     printf("strlen = %lu\n", strlen(str));
     printf("ft_strlen = %zu\n", ft_strlen(str));
 
     //ft_strcpy:
-    printf("strcpy = %s\n", strcpy(dest, src));
-    printf("ft_strcpy = %s\n", ft_strcpy(dest, src));
+    // printf("strcpy = %s\n", strcpy(dest, src));
+    // printf("ft_strcpy = %s\n", ft_strcpy(dest2, src2));
 
     //ft_strcmp:
     printf("strcmp = %d\n", strcmp(dest, src));
