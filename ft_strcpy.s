@@ -7,13 +7,13 @@ ft_strcpy:
 _loop:
     cmp     byte[rsi], 0
     jz      _finish
-    mov     rcx, [rsi]
-    mov     [rdi], rcx
-    inc     rcx
+    mov     dl, [rsi]
+    mov     [rdi],  dl
+    inc     rdi
     inc     rsi
     jmp      _loop
 
 _finish:
-    mov     rcx, 0
-    mov     [rdi], rcx
+    mov     dl, 0
+    mov     [rdi], dl
     ret
