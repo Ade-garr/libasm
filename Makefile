@@ -13,6 +13,7 @@
 SRCS += ft_strlen.s
 SRCS += ft_strcpy.s
 SRCS += ft_strcmp.s
+SRCS += ft_write.s
 
 OBJS	= ${SRCS:.s=.o}
 

@@ -11,7 +11,9 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <unistd.h>
 #include <string.h>
+#include <errno.h>
 #include "libasm.h"
 
 int main()
@@ -36,6 +38,10 @@ int main()
     //ft_strcmp:
     printf("strcmp = %d\n", strcmp(dest3, src3));
     printf("ft_strcmp = %d\n", ft_strcmp(dest3, src3));
+
+    //ft_write:
+    printf("write = %zd & errno = %d\n", write(1, "C'est correct\n", 14), errno);
+    printf("write = %zd & errno = %d\n", ft_write(1, "C'est correct\n", 14), errno);
 
     return(0);
 }
