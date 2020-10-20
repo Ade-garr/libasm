@@ -2,8 +2,8 @@ section .text
     global  ft_strcmp
 
 ft_strcmp:
-    mov bl, [rdi]
-    cmp bl, [rsi]
+    mov cl, [rdi]
+    cmp cl, [rsi]
     jnz _finish
     cmp byte[rdi], 0
     jz  _finish
@@ -14,7 +14,7 @@ ft_strcmp:
 _finish:
     xor rax, rax
     mov al, [rdi]
-    xor rbx, rbx
-    mov bl, [rsi]
-    sub rax, rbx
+    xor rcx, rcx
+    mov cl, [rsi]
+    sub rax, rcx
     ret

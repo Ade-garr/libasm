@@ -3,8 +3,6 @@ section .text
     extern      __errno_location
 
 ft_write:
-    mov     rcx, rsi
-    mov     rbx, rdi
     mov     rax, 1
     syscall
     cmp     rax, 0

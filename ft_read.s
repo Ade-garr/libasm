@@ -3,8 +3,6 @@ section .text
     extern  __errno_location
 
 ft_read:
-    mov     rbx, rdi
-    mov     rcx, rsi
     mov     rax, 0
     syscall
     cmp     rax, 0
