@@ -1,11 +1,11 @@
 section .text
-    global      ft_write
-    extern      __errno_location
+    global  ft_read
+    extern  __errno_location
 
-ft_write:
-    mov     rcx, rsi
+ft_read:
     mov     rbx, rdi
-    mov     rax, 1
+    mov     rcx, rsi
+    mov     rax, 0
     syscall
     cmp     rax, 0
     jl      _error
