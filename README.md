@@ -6,10 +6,8 @@
 
 A main file is given in order to test the functions. Feel free to modify it !<br>
 
-```
-make
-gcc main.c libasm.a
-./a.out
-```
+```make```
+```gcc main.c libasm.a```
+```./a.out```
 
 🔑 The assembly code is compiled with nasm, please install it before ```make```
