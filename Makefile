@@ -3,19 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ade-garr <ade-garr@student.42.fr>          +#+  +:+       +#+         #
+#    By: adegarr <adegarr@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/15 15:12:32 by ade-garr          #+#    #+#              #
-#    Updated: 2020/10/12 16:41:25 by ade-garr         ###   ########.fr        #
+#    Updated: 2022/01/04 18:12:01 by adegarr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS += ft_strlen.s
-SRCS += ft_strcpy.s
-SRCS += ft_strcmp.s
-SRCS += ft_write.s
-SRCS += ft_read.s
-SRCS += ft_strdup.s
+SRCS += srcs/ft_strlen.s
+SRCS += srcs/ft_strcpy.s
+SRCS += srcs/ft_strcmp.s
+SRCS += srcs/ft_write.s
+SRCS += srcs/ft_read.s
+SRCS += srcs/ft_strdup.s
 
 OBJS	= ${SRCS:.s=.o}
 

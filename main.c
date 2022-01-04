@@ -3,72 +3,204 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ade-garr <ade-garr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adegarr <adegarr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/12 15:13:04 by ade-garr          #+#    #+#             */
-/*   Updated: 2020/10/12 16:41:28 by ade-garr         ###   ########.fr       */
+/*   Created: 2022/01/04 18:10:25 by adegarr           #+#    #+#             */
+/*   Updated: 2022/01/04 18:11:32 by adegarr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <errno.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <fcntl.h>
-#include "libasm.h"
+#include <sys/stat.h>
+#include "includes/libasm.h"
 
-int main()
+
+#define OK	"\e[32m✓\e[39m"
+#define ERR	"\e[31m✗\e[39m"
+
+int	check_strlen()
 {
-    char    str[] = "Test";
-    char    src[] = "C'est correct";
-    char    dest[] = "suce des bites";
-    char    dest2[] = "suce des bites";
-    char    src2[] = "C'est correct";
-    char    dest3[] = "suce des bites";
-    char    src3[] = "C'est correct";
-    int     fd;
-    char    buf[13];
-    char    bufbis[13];
-    char    strtodup[] = "chaine a dupliquer";
+	int		test = 0;
+	char	test1[] = "1";
+	char	test2[] = "ceci est un test !";
+	char	test3[] = "lorem\tipsum\tdolor\nsit\namet\n";
+	char	test4[] = "";
+	char	test5[] = "\n\n\f\r\t";
+	char	test6[] = "   ";
 
-    //ft_strlen:
-    printf("ft_strlen:\n");
-    printf("strlen = %lu\n", strlen(str));
-    printf("ft_strlen = %zu\n\n", ft_strlen(str));
+	printf("\e[36mft_strlen\e[39m\t\t");
+	printf("%s", ((strlen(test1) == ft_strlen(test1) && ++test) ? OK : ERR));
+	printf("%s", ((strlen(test2) == ft_strlen(test2) && ++test) ? OK : ERR));
+	printf("%s", ((strlen(test3) == ft_strlen(test3) && ++test) ? OK : ERR));
+	printf("%s", ((strlen(test4) == ft_strlen(test4) && ++test) ? OK : ERR));
+	printf("%s", ((strlen(test5) == ft_strlen(test5) && ++test) ? OK : ERR));
+	printf("%s", ((strlen(test6) == ft_strlen(test6) && ++test) ? OK : ERR));
+	printf("\t\t%s\n", (test == 6) ? "\e[32mOK\e[39m" : "\e[31mError\e[39m\n");
+	return (test);
+}
 
-    //ft_strcpy:
-    printf("ft_strcpy:\n");
-    printf("strcpy = %s\n", strcpy(dest, src));
-    printf("ft_strcpy = %s\n\n", ft_strcpy(dest2, src2));
+int	check_strcpy()
+{
+	int			test = 0;
+	const char	src1[] = "1";
+	const char	src2[] = "ceci est un test !";
+	const char	src3[] = "lorem\tipsum\tdolor\nsit\namet\n";
+	const char	src4[] = "";
+	const char	src5[] = "\n\n\f\r\t";
+	const char	src6[] = "   ";
+	char		dest1[2];
+	char		dest2[19];
+	char		dest3[28];
+	char		dest4[1];
+	char		dest5[6];
+	char		dest6[4];
 
-    //ft_strcmp:
-    printf("ft_strcmp:\n");
-    printf("strcmp = %d\n", strcmp(dest3, src3));
-    printf("ft_strcmp = %d\n\n", ft_strcmp(dest3, src3));
+	printf("\e[36mft_strcpy\e[39m\t\t");
+	printf("%s", ((!strcmp(ft_strcpy(dest1, src1), src1) && ++test) ? OK : ERR));
+	printf("%s", ((!strcmp(ft_strcpy(dest2, src2), src2) && ++test) ? OK : ERR));
+	printf("%s", ((!strcmp(ft_strcpy(dest3, src3), src3) && ++test) ? OK : ERR));
+	printf("%s", ((!strcmp(ft_strcpy(dest4, src4), src4) && ++test) ? OK : ERR));
+	printf("%s", ((!strcmp(ft_strcpy(dest5, src5), src5) && ++test) ? OK : ERR));
+	printf("%s", ((!strcmp(ft_strcpy(dest6, src6), src6) && ++test) ? OK : ERR));
+	printf("\t\t%s\n", (test == 6) ? "\e[32mOK\e[39m" : "\e[31mError\e[39m\n");
+	return (test);
+}
 
-    //ft_write:
-    printf("ft_write:\n");
-    printf("write = %zd & errno = %d\n", write(1, "C'est correct\n", 14), errno);
-    printf("write = %zd & errno = %d\n\n", ft_write(1, "C'est correct\n", 14), errno);
+int	check_strcmp()
+{
+	int			test = 0;
+	printf("\e[36mft_strcmp\e[39m\t\t");
+	printf("%s", ((strcmp("salut", "salut") == ft_strcmp("salut", "salut")) && ++test) ? OK : ERR);
+	printf("%s", ((strcmp("test", "testss") == ft_strcmp("test", "testss")) && ++test) ? OK : ERR);
+	printf("%s", ((strcmp("testss", "test") == ft_strcmp("testss", "test")) && ++test) ? OK : ERR);
+	printf("%s", ((strcmp("test", "tEst") == ft_strcmp("test", "tEst")) && ++test) ? OK : ERR);
+	printf("%s", ((strcmp("", "test") == ft_strcmp("", "test")) && ++test) ? OK : ERR);
+	printf("%s", ((strcmp("test", "") == ft_strcmp("test", "")) && ++test) ? OK : ERR);
+	printf("%s", ((strcmp("test\200", "test\0") == ft_strcmp("test\200", "test\0")) && ++test) ? OK : ERR);
+	printf("\t\t%s\n", (test == 7) ? "\e[32mOK\e[39m" : "\e[31mError\e[39m\n");
+	return (test);
+}
 
-    //ft_read:
-    printf("ft_read:\n");
-    fd = open("test.txt", O_RDONLY);
-    printf("read = %zd & errno = %d\n", read(fd, buf, 12), errno);
-    buf[12] = '\0';
-    printf("buf = %s\n", buf);
-    close(fd);
-    fd = open("test.txt", O_RDONLY);
-    printf("ft_read = %zd & errno = %d\n", ft_read(fd, bufbis, 12), errno);
-    bufbis[12] = '\0';
-    printf("bufbis = %s\n\n", bufbis);
-    close(fd);
+int	check_write()
+{
+	int			fd;
+	ssize_t		ret1;
+	ssize_t		ret2;
+	int			test;
+	char		str1[] = "|This is test line 1 from ft_write().|\n";
+	char		str2[] = "|This is test line 2 from write().   |\n";
 
-    //ft_strdup:
-    printf("ft_strdup:\n");
-    printf("strdup = %s\n", strdup(strtodup));
-    printf("ft_strdup = %s\n", ft_strdup(strtodup));
-    return(0);
+	printf("\e[36mft_write\e[39m\t\t");
+	test = 0;
+	fd = open("test_write.txt", O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	ret1 = ft_write(fd, str1, strlen(str1));
+	ret2 = write(fd, str2, strlen(str2));
+	write(fd, "\0", 1);
+	close(fd);
+	printf("%s", ((ret1 == ret2) && ++test) ? OK : ERR);
+	fd = open("test_write.txt", O_RDONLY, 0664);
+	ret1 = ft_write(fd, str1, strlen(str1));
+	ret2 = write(fd, str2, strlen(str2));
+	printf("%s", ((ret1 == ret2) && ++test) ? OK : ERR);
+	printf("\t\t%s\n", (test == 2) ? "\e[32mOK\e[39m" : "\e[31mError\e[39m\n");
+	close(fd);
+	printf("\e[36m\tErrno:\n");
+	fd = open("test_write.txt", O_RDONLY, 0664);
+	ft_write(fd, str1, strlen(str1));
+	perror("\t- ft_write\t");
+	close(fd);
+	fd = open("test_write.txt", O_RDONLY, 0664);
+	write(fd, str2, strlen(str2));
+	perror("\t- write\t\t");
+	close(fd);
+	return (test);
+}
+
+int		check_read()
+{
+	int		test;
+	char	buf1[1024];
+	char	buf2[1024];
+	int		fd;
+	ssize_t	read1;
+	ssize_t	read2;
+
+	test = 0;
+	printf("\e[36mft_read\e[39m\t\t\t");
+	fd = open("test_write.txt", O_RDONLY, 0664);
+	read1 = ft_read(fd, buf1, 1024);
+	close(fd);
+	fd = open("test_write.txt", O_RDONLY, 0664);
+	read2 = read(fd, buf2, 1024);
+	close(fd);
+	printf("%s", (!strcmp(buf1, buf2) && (read1 == read2) && ++test) ? OK : ERR);
+	fd = open("no_file.txt", O_RDONLY, 0664);
+	read1 = ft_read(fd, buf1, 1024);
+	close(fd);
+	fd = open("no_file.txt", O_RDONLY, 0664);
+	read2 = read(fd, buf2, 1024);
+	close(fd);
+	printf("%s", (!strcmp(buf1, buf2) && (read1 == read2) && ++test) ? OK : ERR);
+	printf("\t\t%s\n", (test == 2) ? "\e[32mOK\e[39m" : "\e[31mError\e[39m\n");
+	printf("\e[36m\tErrno:\n");
+	fd = open("no_file.txt", O_RDONLY, 0664);
+	ft_read(fd, buf1, 1024);
+	perror("\t- ft_read\t");
+	close(fd);
+	fd = open("no_file.txt", O_RDONLY, 0664);
+	read(fd, buf2, 1024);
+	perror("\t- read\t\t");
+	close(fd);
+	return (test);
+}
+
+int		check_strdup()
+{
+	int		test;
+	char	src1[] = "Ceci est un test.";
+	char	src2[] = "Lorem ipsum dolor sit amet, eum amet nonumes incorrupte ex.";
+	char	src3[] = "Lorem ipsum dolor sit amet, graeci audiam vim ea, ea invidunt suscipiantur vis. Ne usu.";
+	char	src4[] = "";
+	char	*dst1;
+	char	*dst2;
+	char	*dst3;
+	char	*dst4;
+
+	test = 0;
+	printf("\e[36mft_strdup\e[39m\t\t");
+	dst1 = ft_strdup(src1);
+	dst2 = ft_strdup(src2);
+	dst3 = ft_strdup(src3);
+	dst4 = ft_strdup(src4);
+	printf("%s", ((!strcmp(dst1, src1) && dst1 != src1) && ++test) ? OK : ERR);
+	printf("%s", ((!strcmp(dst2, src2) && dst2 != src2) && ++test) ? OK : ERR);
+	printf("%s", ((!strcmp(dst3, src3) && dst3 != src3) && ++test) ? OK : ERR);
+	printf("%s", ((!strcmp(dst4, src4) && dst4 != src4) && ++test) ? OK : ERR);
+	free(dst1);
+	free(dst2);
+	free(dst3);
+	free(dst4);
+	printf("\t\t%s\n", (test == 4) ? "\e[32mOK\e[39m" : "\e[31mError\e[39m\n");
+	return (test);
+}
+
+int		main(void)
+{
+	int	result;
+
+	result = 0;
+	printf("\e[34m\e[4mFonction\e[24m\t\t\e[4mTests\e[24m\t\t\e[4mRésultat\e[24m\e[39m\n");
+	result += check_strlen();
+	result += check_strcpy();
+	result += check_strcmp();
+	result += check_write();
+	result += check_read();
+	result += check_strdup();
+	printf("\n\e[33mTotal: %d/27\t\t\e[32m%.0f%%\n\e[39m", result, (float)(((float)result / (float)27) * 100));
+	return (0);
 }
