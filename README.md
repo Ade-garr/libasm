@@ -12,5 +12,5 @@ gcc main.c libasm.a
 ./a.out
 ```
 
-🔑 The assembly code is compiled with nasm, please install it before ```make```
+🔑 The assembly code is compiled with nasm, please install it before ```make```<br>
 🔑 System required : Linux
