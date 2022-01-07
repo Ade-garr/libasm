@@ -13,3 +13,4 @@ gcc main.c libasm.a
 ```
 
 🔑 The assembly code is compiled with nasm, please install it before ```make```
+🔑 System required : Linux

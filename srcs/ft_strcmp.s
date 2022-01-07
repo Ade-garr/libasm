@@ -17,4 +17,18 @@ _finish:
     xor rcx, rcx
     mov cl, [rsi]
     sub rax, rcx
+    jb ret_neg
+	ja ret_pos
+	jmp ret_eq
+
+ret_eq:
+	mov rax, 0
+	ret
+
+ret_neg:
+	mov rax, -1
+	ret
+
+ret_pos:
+	mov rax, 1
     ret
